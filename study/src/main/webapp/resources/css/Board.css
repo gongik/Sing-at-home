@@ -1,0 +1,253 @@
+@charset "UTF-8";@charset "utf-8";
+*{
+    margin: 0px;
+    padding: 0px;     
+}
+body{
+    font-family: 'Noto Sans KR', sans-serif;        
+    font-size: 13px;
+    line-height: 20px;
+    color:#222;
+}
+img{
+    vertical-align: top;
+    border:0;
+    width: 100%;
+    height: auto;
+}
+ul ,ol{
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    display: block;
+    position: absolute;
+    top:-99999px;    
+    left:-99999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+fieldset{
+    border: 0;
+}
+legend{
+    display: none;
+}
+input{
+    font-family: 'Noto Sans KR', sans-serif ;
+    vertical-align: top;
+}
+.logo{
+    display: block;
+    text-indent: -99999px;
+    background-image: url();
+}
+
+/* 기본 본문 공통 */
+
+.pc{
+    display: none;
+}
+#wrap{
+    padding-top: 30px;
+    display: flex;
+    position: relative;
+    min-width: 370px;
+    width: 100%;
+    height: 100%;
+}
+.main{
+    width: 100%;
+}
+
+#headerIn{
+    width: 250px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+}
+.logo a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: 250px 80px;
+    background-repeat: no-repeat;
+    background-image: url(/resources/img/logo.png);
+}
+.gnb1{
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    margin-top: 20px;
+    width: 100%;
+    height: 80px;
+    margin-bottom: 50px;
+
+}
+.gnb1 ul{
+    padding: 0;
+    display: flex;
+}
+.gnb1 ul li {
+    width: 33.33%;
+}
+.gnb1 ul li a{
+	font-size :17px;
+    display: block;
+    border: 1px solid black;
+    line-height: 50px;
+    color: black;
+    text-decoration: none;
+    background-color: rgb(13, 14, 13);
+    box-shadow: 2px 1px 5px 1px yellow;
+    display: flex;
+    justify-content: center;
+    font: bolder;
+    color: white;
+}
+
+
+/* 게시판  */
+#contianer{
+	width :100%;
+}
+.goHome{
+	margin-left :50px;
+	margin-bottom : 50px;
+	font-size : 17px;
+}
+.boardBox{
+	margin : 0 auto;
+	width : 90%;
+}
+
+.boardTable{
+	border : 0;
+	width : 100%;
+}
+.boardTable td{
+	border-bottom : 1px solid grey;
+	width : 50px;
+	font-size : 15px;
+	font-weight : bolder;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.boardTop td{
+	border-top : 1px solid black;
+	border-bottom : 1px solid black;
+}
+.boardTitle{
+	 overflow: hidden;
+}
+.boardTitle a{
+	width :110px;
+	display : block;
+	text-decoration : underline;
+    white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	color : black;
+	font-weight : bolder;
+}
+.boardcontent {
+	color : grey;
+}
+.boardOption input{
+	height:30px;
+}
+#type{
+	height:30px;
+	width:20%;
+}
+#keyword{
+	width: 40%;
+}
+#searchbtn{
+	background-color: black;
+	color : white;
+	font-weight : bolder;
+	width : 15%;	
+}
+.writeBtn{
+	background-color : black;
+	margin-bottom : 2px;
+	height :30px;
+	width : 15%;
+}
+.writeBtn a{
+	font-weight : bolder;
+	color : white;
+	text-decoration: none;
+}
+.paging{
+	margin : 0 auto;
+	margin-top :20px;
+	padding-bottom : 30px;
+	width : 80%;
+	display : flex;
+	justify-content: space-between;
+}
+.paging a{
+	text-decoration : none;
+	font-size :15px;
+}
+.prev , .next{
+	color : black;
+	font-weight : bolder;
+}
+.pageNo{
+	width : 22px;
+	height : 22px;
+	text-align : center;
+	line-height : 22px;
+	background-color : black;
+	border-radius : 50%;
+	color :white;
+}
+
+
+@media screen and (min-width : 768px){
+	
+.boardTable td{
+	font-size : 22px;
+	line-height : 1.5;
+}
+.paging a{
+	font-size: 20px;
+}
+.next , .prev{
+	margin-top : 5px;
+}
+.pageNo{
+	width : 30px;
+	height : 30px;
+	line-height : 30px;
+}
+#type{
+	font-size :18px;
+}
+#keyword{
+	font-size :18px;
+}
+#searchbtn{
+	font-size: 18px;
+}
+.writeBtn{
+	font-size : 18px;
+}
+.boardTitle a{
+	width : 300px;
+}
+}
+
+
+

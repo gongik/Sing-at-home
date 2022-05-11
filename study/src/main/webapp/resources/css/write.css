@@ -1,0 +1,185 @@
+@charset "utf-8";
+*{
+    margin: 0px;
+    padding: 0px;     
+}
+body{
+    font-family: 'Noto Sans KR', sans-serif;        
+    font-size: 13px;
+    line-height: 20px;
+    color:#222;
+}
+img{
+    vertical-align: top;
+    border:0;
+    width: 100%;
+    height: auto;
+}
+ul ,ol{
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    display: block;
+    position: absolute;
+    top:-99999px;    
+    left:-99999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+fieldset{
+    border: 0;
+}
+legend{
+    display: none;
+}
+input{
+    font-family: 'Noto Sans KR', sans-serif ;
+    vertical-align: top;
+}
+.logo{
+    display: block;
+    text-indent: -99999px;
+    background-image: url();
+}
+
+/* 기본 본문 공통 */
+
+.pc{
+    display: none;
+}
+#wrap{
+    padding-top: 30px;
+    display: flex;
+    position: relative;
+    min-width: 370px;
+    width: 100%;
+    height: 100%;
+}
+.main{
+    width: 100%;
+}
+
+#headerIn{
+    width: 250px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+}
+.logo a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: 250px 80px;
+    background-repeat: no-repeat;
+    background-image: url(/resources/img/logo.png);
+}
+.gnb1{
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    margin-top: 20px;
+    width: 100%;
+    height: 80px;
+    margin-bottom: 50px;
+
+}
+.gnb1 ul{
+    padding: 0;
+    display: flex;
+}
+.gnb1 ul li {
+    width: 33.33%;
+}
+.gnb1 ul li a{
+	font-size :17px;
+    display: block;
+    border: 1px solid black;
+    line-height: 50px;
+    color: black;
+    text-decoration: none;
+    background-color: rgb(13, 14, 13);
+    box-shadow: 2px 1px 5px 1px yellow;
+    display: flex;
+    justify-content: center;
+    font: bolder;
+    color: white;
+}
+
+
+
+
+/* 게시판 글 디테일 */
+.goHome{
+	margin-left :50px;
+	margin-bottom : 20px;
+	font-size : 17px;
+}
+#container{
+	width: 100%;
+	
+}
+.detailBox{
+	width: 80%;
+	margin :0 auto;
+}
+.detailTable{
+	width : 85%;
+	height : 300px;
+	margin : 0 auto;
+	font-size : 15px;
+}
+.detailTable input,.detailTable textarea{
+	width : 100%;
+	height : 100%;
+}
+.detailTable th{
+	white-space : pre;
+	border-bottom : 1px solid black;
+	border-right : 1px solid black;
+}
+.textarea{
+	height: 50px;
+}
+#uploadBtn{
+	box-sizing: border-box;
+	text-align : center;
+	display :block;
+	width:100%;
+	height :100%;
+	background-color : white;
+	text-decoration : none;
+	color : black;
+	border : 1px solid black;
+}
+#uploadBtn:hover{
+	color : white;
+	background-color : black;
+	font-weight : bolder;
+}
+
+#uploadResult img{
+	width : 50px;
+	height : 50px;
+}
+
+@media screen and (min-width : 768px){
+.detailTable{
+	width : 70%;
+	height : 500px;
+	margin : 0 auto;
+	font-size : 20px;
+}
+
+	
+} 
+/* 태블릿 종료 */
+

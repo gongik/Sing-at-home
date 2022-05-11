@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.ksw.dao.SingDao">
+  
+  <insert id ="SingInsert">
+  insert into member(id,password,name,email)
+  values(#{id},#{password},#{name},#{email})
+  
+  </insert>
+  
+  <select id="Login" resultType="org.ksw.model.SingDTO">
+  select * from member
+  where id=#{id} and password=#{password}
+  </select>
+  
+  <select id="SingList" resultType="org.ksw.model.SingDTO">
+  select * 
+  from (
+  select @rownum:=@rownum+1 as rownum, b.bno,title,content,writer,LEFT(regdate,10) as regdate,count,id
+  from (select @rownum:=0) as tmp, sing_board b
+  <if test="type != null">
+  	<choose>
+  	<when test="type =='t'.toString()">
+  		where title like concat('%',#{keyword},'%')
+  	</when>
+  	<when test="type =='w'.toString()">
+  		where writer like concat('%',#{keyword},'%')
+  	</when>
+  	<otherwise>
+  		where writer like concat('%',#{keyword},'%')
+  		OR title like concat('%',#{keyword},'%')
+  	</otherwise>
+  	</choose>
+  </if>
+  order by bno desc
+  )  as boardList
+  	<![CDATA[
+  	where rownum > (#{pagenum} -1) * #{amount} and rownum <= #{pagenum} * #{amount}
+  	]]>
+  
+  </select>
+  <select id="SingDetail" resultType="org.ksw.model.SingDTO">
+  select * from sing_board where bno=#{bno}
+  </select>
+  
+  <delete id="SingDelete">
+  delete from sing_board where bno= #{bno}
+  </delete>
+  
+  <update id="SingCountUp">
+  update sing_board
+  set count = count+1
+  where bno = #{bno}
+  </update>
+  <update id="SingModify">
+  update sing_board
+  set title = #{title},
+  content = #{content}
+  where bno = #{bno}
+  
+  </update>
+  
+  
+  <select id = "getTotalCount" resultType="int">
+  select count(*)
+  	from sing_board
+  	 <if test="type != null">
+	  <choose>
+	  <when test="type =='t'.toString()">
+		  	where title like concat('%',#{keyword},'%')
+	  </when>
+	  <when test="type == 'w'.toString()">
+	  		where writer like concat('%',#{keyword},'%')
+	  </when>
+	  <otherwise>
+	  		where writer like concat('%',#{keyword},'%')
+	  		OR title like concat('%',#{keyword},'%')
+	  </otherwise>
+	  </choose>
+  </if>
+  </select>
+  
+  <insert id="SingWrite">
+  <selectKey keyProperty="bno" resultType="int" order="BEFORE">
+  select max(bno)+1 bno from sing_board
+  </selectKey>
+  insert into sing_board(bno,title,content,writer,id)
+  values(#{bno},#{title},#{content},#{writer},#{id})
+  </insert>
+  
+  <insert id="add">
+  	insert into sing_reply(reply,replyer,bno)
+  	values(#{reply},#{replyer},#{bno})
+  </insert>
+  
+  <select id="list" resultType="org.ksw.model.SingDTO">
+  select * from sing_reply
+  where bno=#{bno}
+  order by rno desc
+  </select>
+  
+  <select id="detail" resultType="org.ksw.model.SingDTO">
+  select * from sing_reply
+  where rno=#{rno}
+  </select>
+  
+  <update id="modify">
+  update sing_reply
+  set reply=#{reply}
+  where rno=#{rno}
+  </update>
+  
+  <delete id="remove">
+  delete from sing_reply where rno=#{rno}
+  </delete>
+  
+  <insert id="SingAttachWrite">
+  insert into sing_attach(uuid,filename,uploadpath,image,bno)
+  values(#{uuid},#{fileName},#{uploadPath},#{image},#{bno})
+  </insert>
+  
+  <select id="AttachList" resultType="org.ksw.model.AttachFileDTO">
+  	select * from sing_attach where bno=#{bno}
+  </select>
+  
+  <select id="userIdCheck" resultType="org.ksw.model.SingDTO">
+   select * from member where id=#{user_id} limit 1
+  </select>
+  
+  <insert id="playAdd">
+   insert into play_list(title,id)
+   values(#{title},#{id})
+  </insert>
+  
+  <select id="playList" resultType="org.ksw.model.SingDTO">
+  select * from play_list where id=#{id}
+  </select>
+  
+  <delete id="playDelete">
+  delete from play_list where bno=#{bno}
+  </delete>
+  
+  <select id="SingSignModify" resultType="org.ksw.model.SingDTO">
+  	select * from member where id=#{id}
+  </select>
+  
+  <update id="SingSignModifyOn">
+  update member 
+  set password = #{password},
+  name=#{name},
+  email=#{email} 
+  where id=#{id}
+  </update>
+  
+  <delete id="SignDelete">
+  delete from member where id=#{id}
+  </delete>
+  
+  <insert id="SingLike">
+	insert into sing_like(bno,id)
+	select #{bno},#{id} from dual where not exists(select * from sing_like where bno=#{bno} and id=#{id});
+  </insert>
+  
+  <select id="SingLikeList" resultType="org.ksw.model.SingDTO">
+  select * from sing_like where id=#{id} and bno=#{bno}
+  </select>
+  
+  <delete id="SingLikeDelete">
+  delete from sing_like where id=#{id} and bno=#{bno}
+  </delete>
+  
+  <update id="SingLikeCountUp">
+  update sing_board
+  set like_count = like_count+1
+  where bno = #{bno}
+  </update>
+  
+  <update id="SingLikeCountDown">
+  update sing_board
+  set like_count = like_count-1
+  where bno = #{bno}
+  </update>
+  </mapper>
